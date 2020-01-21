@@ -12,9 +12,9 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging'){
+        stage ('Output'){
             steps {
-                build job: 'Deploy-to-staging'
+                echo 'Hello World'
             }
         }
     }
