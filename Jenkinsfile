@@ -1,21 +1,14 @@
 pipeline {
     agent any
-    stage("Checkout")
-      {
-        steps {
-         script {
-           dir('repo') {
-             scm_vars = checkout scm
-             setCommitterInfo(scm_vars.GIT_COMMITTER_NAME, scm_vars.GIT_COMMITTER_EMAIL)
-             env.GIT_BRANCH= scm_vars.GIT_BRANCH.tokenize('/')[1]
-             env.REPO = scm_vars.GIT_URL.tokenize('/')[3].split("\\.")[0]
-	   }
-	 }
-	}
-      }
-	
-    stage('Build'){
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+    agent any
+    stages{
+        stage('Build'){
             steps {
+		sh 'printenv'
                 sh 'mvn clean package'
             }
             post {
@@ -25,19 +18,11 @@ pipeline {
                 }
             }
         }
-      if( currentBuild.result == 'SUCCESS' )
-      {
-         // build ended early (ci skip)
-         echo("We win!")
-         return
-      }
-        stage ('Output'){
+        stage ('Deploy to Staging'){
             steps {
-                echo 'Hello World'
-                sh 'echo $GIT_BRANCH'
-	        sh 'echo $REPO'
-	        echo "RESULT:${currentBuld.result}"
+                build job: 'Deploy-to-staging'
             }
         }
     }
 }
+
