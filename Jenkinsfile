@@ -5,13 +5,7 @@ pipeline {
             steps {
                 echo env.BRANCH_NAME
                 sh 'mvn clean package'
-            }
-            if( currentBuild.result == 'SUCCESS' )
-            {
-                // build ended early (ci skip)
-                 echo("We win!")
-                 return
-            }
+            } 
             post {
                 success {
                     echo 'Now Archiving...'
