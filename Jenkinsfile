@@ -2,7 +2,8 @@ pipeline {
     agent any
     stages{
         stage('branchname'){
-            sh 'echo env.BRANCH_NAME'
+            steps {
+                sh 'echo env.BRANCH_NAME'
         }
         stage('Build'){
             steps {
