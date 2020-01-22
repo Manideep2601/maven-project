@@ -1,9 +1,11 @@
 pipeline {
     agent any
     stages{
+        stage('branchname'){
+            sh 'echo env.BRANCH_NAME'
+        }
         stage('Build'){
             steps {
-                echo env.BRANCH_NAME
                 sh 'mvn clean package'
             } 
             post {
@@ -13,9 +15,9 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Staging'){
+        stage ('OUTPUT'){
             steps {
-                build job: 'Deploy-to-staging'
+                sh 'echo currentBuild.result'
             }
         }
     }
