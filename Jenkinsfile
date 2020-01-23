@@ -34,10 +34,4 @@ pipeline {
 	            echo "RESULT:${currentBuld.result}"
             }
         }
-      if( currentBuild.result == 'SUCCESS' )
-      {
-         // build ended early (ci skip)
-         echo("We win!")
-         return
-      }
 }
