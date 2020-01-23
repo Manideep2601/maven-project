@@ -26,7 +26,7 @@ pipeline {
             }
         }
     }
-        stage ('Output'){
+        stage('Output'){
             steps {
                 echo 'Hello World'
                 sh 'echo $GIT_BRANCH'
