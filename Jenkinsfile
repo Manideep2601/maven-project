@@ -7,7 +7,7 @@ pipeline {
          script {
            dir('repo') {
              scm_vars = checkout scm
-             setCommitterInfo(scm_vars.GIT_COMMITTER_NAME, scm_vars.GIT_COMMITTER_EMAIL)
+             //setCommitterInfo(scm_vars.GIT_COMMITTER_NAME, scm_vars.GIT_COMMITTER_EMAIL)
              env.GIT_BRANCH= scm_vars.GIT_BRANCH.tokenize('/')[1]
              env.REPO = scm_vars.GIT_URL.tokenize('/')[3].split("\\.")[0]
 	   }
