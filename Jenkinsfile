@@ -28,11 +28,13 @@ pipeline {
     
         stage('Output'){
             steps {
+	      script {		    
                 echo 'Hello World'
                 def branch = sh "echo $GIT_BRANCH"
 		println branch.split('/')[2]	    
 	        sh 'echo $REPO'
 	        //echo "RESULT:${currentBuld.result}"
+	      }	      
             }
         }
       }	    
