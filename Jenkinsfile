@@ -31,7 +31,7 @@ pipeline {
 	      script {		    
                 echo 'Hello World'
                 //def branch = sh "echo $GIT_BRANCH"
-		println  $GIT_BRANCH.split('/')[2]	    
+		println  ${GIT_BRANCH}.split('/')[2]	    
 	        sh 'echo $REPO'
 	        //echo "RESULT:${currentBuld.result}"
 	      }	      
