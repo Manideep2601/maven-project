@@ -31,7 +31,7 @@ pipeline {
                 echo 'Hello World'
                 sh 'echo $GIT_BRANCH'
 	        sh 'echo $REPO'
-	        echo "RESULT:${currentBuld.result}"
+	        //echo "RESULT:${currentBuld.result}"
             }
         }
       }	    
